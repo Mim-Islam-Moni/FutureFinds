@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', viwes.home),
     path('product/', include('products.urls')),
+    path('products/', viwes.products),
 ]

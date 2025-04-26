@@ -2,28 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home page</title>
+    <title>Product section</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 <body>
-<!--This is header Part Start -->
 <header></header>
 
-<!--This is header Part End -->
-
-<!--This is Main Part Start -->
 <main>
-    <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is home page</h1>
+    <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is Product page</h1>
 
-<a href="products">Go to product</a>
-
-
-     <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Category</h1>
+     <!-- Product code start -->
+ <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Products</h1>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4">
-  {% for i in categories %}
+  {% for i in products %}
   <div class="card bg-base-100 shadow-sm w-full">
     <figure>
       <img
@@ -40,17 +33,9 @@
   </div>
   {% endfor %}
 </div>
-
-
+    <!-- Product code End -->
 </main>
 
-<!--This is Main Part End -->
-
-<!--This is footer Part Start -->
 <footer></footer>
-
-<!--This is footer Part Start -->
-
-
 </body>
 </html>
