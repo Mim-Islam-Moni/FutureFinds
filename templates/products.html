@@ -7,7 +7,10 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<header></header>
+<header>
+    
+    
+</header>
 
 <main class="w-4/5 mx-auto">
     <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is Product page</h1>
@@ -22,16 +25,17 @@
   <div class="card bg-base-100 shadow-sm w-full ">
     <figure>
       {% if i.image %}
-        <img src="{{ i.image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
+        <img class="rounded-2xl p-5" src="{{ i.image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
       {% else %}
         <img src="{% static 'images' %}" alt="No Image" class="w-full h-48 object-contain" />
       {% endif %}
     </figure>
     <div class="card-body">
       <h2 class="card-title">{{ i.name }}</h2>
-      <p>{{ i.price }}</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">View Product</button>
+      <p>{{ i.price }} BDT</p>
+      <div class="card-actions justify-between">
+        <button class="btn btn-primary bg-black border-none">Add to Cart</button>
+          <button class="btn btn-primary">Buy Now</button>
       </div>
     </div>
   </div>

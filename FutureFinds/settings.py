@@ -125,3 +125,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# settings.py
+
+STATIC_URL = '/static/'
+
+# For local development, ensure staticfiles directories are set up
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
