@@ -22,25 +22,27 @@
 
      <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Category</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4">
+{% load static %}
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
   {% for i in categories %}
-  <div class="card bg-base-100 shadow-sm w-full">
-    <figure>
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-        alt="Shoes" />
+  <div class="card bg-gray-50 shadow-sm w-full">
+    <figure class="bg-white p-2">
+      {% if i.category_image %}
+        <img src="{{ i.category_image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
+      {% else %}
+        <img src="{% static 'images' %}" alt="No Image" class="w-full h-48 object-contain" />
+      {% endif %}
     </figure>
     <div class="card-body">
       <h2 class="card-title">{{ i.name }}</h2>
-      <p>{{ i.description }}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">View Product</button>
+       <a href="{% url 'category_products' i.slug %}" class="btn btn-primary">View Products</a>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
-
 
 </main>
 

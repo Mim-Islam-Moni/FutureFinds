@@ -9,23 +9,27 @@
 <body>
 <header></header>
 
-<main>
+<main class="w-4/5 mx-auto">
     <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is Product page</h1>
 
      <!-- Product code start -->
  <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Products</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4">
+ {% load static %}
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4 ">
   {% for i in products %}
-  <div class="card bg-base-100 shadow-sm w-full">
+  <div class="card bg-base-100 shadow-sm w-full ">
     <figure>
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-        alt="Shoes" />
+      {% if i.image %}
+        <img src="{{ i.image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
+      {% else %}
+        <img src="{% static 'images' %}" alt="No Image" class="w-full h-48 object-contain" />
+      {% endif %}
     </figure>
     <div class="card-body">
       <h2 class="card-title">{{ i.name }}</h2>
-      <p>{{ i.description }}</p>
+      <p>{{ i.price }}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-primary">View Product</button>
       </div>
@@ -33,6 +37,9 @@
   </div>
   {% endfor %}
 </div>
+
+
+
     <!-- Product code End -->
 </main>
 
