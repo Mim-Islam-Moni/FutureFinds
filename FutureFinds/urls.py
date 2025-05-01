@@ -23,6 +23,11 @@ urlpatterns = [
     path('', views.home),
     path('product/', include('products.urls')),
     path('products/', views.products),
+
+    path('signup/', SignUp, name='signup'),
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
+
 ]
 from django.conf import settings
 from django.conf.urls.static import static
