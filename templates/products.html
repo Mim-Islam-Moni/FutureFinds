@@ -95,22 +95,22 @@
 
  {% load static %}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4 ">
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4">
   {% for i in products %}
-  <div class="card bg-base-100 shadow-sm w-full ">
+  <div class="card bg-base-100 shadow-sm w-full">
     <figure>
       {% if i.image %}
         <img class="rounded-2xl p-5" src="{{ i.image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
       {% else %}
-        <img src="{% static 'images' %}" alt="No Image" class="w-full h-48 object-contain" />
+        <img src="{% static 'images/no-image.png' %}" alt="No Image" class="w-full h-48 object-contain" />
       {% endif %}
     </figure>
     <div class="card-body">
       <h2 class="card-title">{{ i.name }}</h2>
       <p>{{ i.price }} BDT</p>
       <div class="card-actions justify-between">
-        <button class="btn btn-primary bg-black border-none">Add to Cart</button>
-          <button class="btn btn-primary">Buy Now</button>
+        <a href="{% url 'add_to_cart' i.id %}" class="btn btn-primary bg-black border-none">Add to Cart</a>
+        <button class="btn btn-primary">Buy Now</button>
       </div>
     </div>
   </div>

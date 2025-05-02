@@ -1,5 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
+from .models import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login as auth_login, logout as django_logout
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.db import transaction
+from django.db.models import Sum, F
+from django.shortcuts import redirect
+from django.http import HttpResponse
+
+
 
 def home(request):
     categories = Category.objects.all()
@@ -106,103 +116,20 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', {'profile': profile})
 
 
-@login_required
-def create_product(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        price = request.POST.get('price')
-        category = request.POST.get('category')
-        stock = request.POST.get('stock')
-        image = request.FILES.get('image')
-
-        # Validate required fields
-        if not all([name, description, price, category, stock]):
-            messages.error(request, 'Please fill in all required fields.')
-            return redirect('create_product')
-
-        try:
-            price = float(price)
-            stock = int(stock)
-            user = request.user
-
-            product = Product.objects.create(
-                name=name,
-                description=description,
-                price=price,
-                category=category,
-                stock=stock,
-                image=image,
-                seller=user,
-            )
-            messages.success(request, 'Product created successfully!')
-            return redirect('user_profile')
-        except ValueError:
-            messages.error(request, 'Invalid price or stock value.')
-            return redirect('create_product')
-
-    return render(request, 'create_product.html')
-
-
-@login_required
-def update_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id, seller=request.user)
-
-    if request.method == 'POST':
-        product.name = request.POST.get('name', product.name)
-        product.description = request.POST.get('description', product.description)
-        product.price = request.POST.get('price', product.price)
-        product.category = request.POST.get('category', product.category)
-        product.stock = request.POST.get('stock', product.stock)
-
-        if 'image' in request.FILES:
-            product.image = request.FILES['image']
-
-        try:
-            product.price = float(product.price)
-            product.stock = int(product.stock)
-            product.save()
-            messages.success(request, 'Product updated successfully!')
-            return redirect('user_profile')
-        except ValueError:
-            messages.error(request, 'Invalid price or stock value.')
-            return redirect('update_product', product_id=product.id)
-
-    return render(request, 'update_product.html', {'product': product})
-
-
-@login_required
-def delete_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id, seller=request.user)
-
-    if request.method == 'POST':
-        product.delete()
-        messages.success(request, 'Product deleted successfully!')
-        return redirect('user_profile')
-
-    return render(request, 'delete_product.html', {'product': product})
-
-
-@login_required
-def seller_products(request):
-    products = Product.objects.filter(seller=request.user.profile)
-    return render(request, 'seller_products.html', {'products': products})
-
-
 def products(request):
     # Get the category filter from the query parameters
     category_filter = request.GET.get('category', None)
 
     # Filter products based on category if provided, otherwise fetch all products
     if category_filter:
-        products = Product.objects.filter(category=category_filter, is_available=True)
+        products = Product.objects.filter(category__slug=category_filter, is_available=True)
     else:
         products = Product.objects.filter(is_available=True)
 
     # Fetch all unique categories for the filter dropdown
-    categories = Product.CATEGORY_CHOICES
+    categories = Category.objects.all()
 
-    return render(request, 'shop.html', {
+    return render(request, 'products.html', {
         'products': products,
         'categories': categories,
         'selected_category': category_filter,

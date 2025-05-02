@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path,include
 
 from products.views import SignUp, login, logout
-from . import views
+from products.views import *
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', home, name='home'),
     path('product/', include('products.urls')),
-    path('products/', views.products),
+    path('products/', products),
 
     path('signup/', SignUp, name='signup'),
     path('login/', login, name='login'),
@@ -34,10 +34,6 @@ urlpatterns = [
     # Seller URLs
     path('user_profile/', user_profile, name='user_profile'),
     path('edit_profile/', edit_profile, name='edit_profile'),
-    path('products/', seller_products, name='seller_products'),
-    path('products/create/', create_product, name='create_product'),
-    path('products/<int:product_id>/update/', update_product, name='update_product'),
-    path('products/<int:product_id>/delete/', delete_product, name='delete_product'),
     # path('orders/', ordered_items, name='ordered_items'),
 
 
