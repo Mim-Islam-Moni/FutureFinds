@@ -22,13 +22,16 @@
 <body>
     <div class="bg-gray-100 flex items-center justify-center md:h-screen p-4">
         <div class="shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)] max-w-6xl max-md:max-w-lg rounded-md p-6 relative">
-            <a href="javascript:void(0)"><img src="##" alt="logo"
+             {% load static %}
+            <a href="javascript:void(0)"><img src="{% static 'images/Future Finds banner (1)_prev_ui.png' %}" alt="logo"
+
                     class='w-40 md:mb-4 mb-12' />
             </a>
 
             <div class="grid md:grid-cols-2 items-center gap-8">
                 <div class="max-md:order-1 lg:min-w-[450px]">
-                    <img src="##" class="lg:w-11/12 w-full object-cover rounded-md"
+                    {% load static %}
+                    <img src="{% static 'images/log_in.png' %}" class="lg:w-11/12 w-full object-cover rounded-md"
                         alt="login-image" />
                 </div>
 

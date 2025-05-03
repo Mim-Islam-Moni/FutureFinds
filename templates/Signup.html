@@ -25,7 +25,8 @@
             <div class="grid md:grid-cols-2 gap-16 bg-gray-50 shadow w-full sm:p-8 p-6 rounded-xl relative">
                 <div>
                     <div class="mb-16">
-                        <a href="{% url 'home' %}"><img src="##" alt="logo"
+                         {% load static %}
+                        <a href="{% url 'home' %}"><img src="{% static 'images/Future Finds banner (1)_prev_ui.png' %}" alt="logo"
                                 class='w-40 inline-block' />
                         </a>
                     </div>
