@@ -114,21 +114,18 @@
  <!--Banner section ENd -->
 
 </header>
-<main class="w-4/5 mx-auto">
 
-
+<main class="mb-15">
 <!-- Category start-->
+<section id="category_part"  class="w-4/5  mx-auto ">
 
-
-    <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is home page</h1>
-
-     <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Category</h1>
+     <h1 class="mx-auto justify-center text-center font text-6xl font-bold my-12">Category</h1>
 
 {% load static %}
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 p-10">
   {% for i in categories %}
-  <div class="card bg-gray-50 shadow-sm w-full p-4 rounded-2xl">
+  <div class="card bg-white shadow-2xl w-full p-4 rounded-2xl">
     <figure class="bg-white p-2">
       {% if i.category_image %}
         <img src="{{ i.category_image.url }}" alt="{{ i.name }}" class="w-full h-48 object-contain" />
@@ -137,21 +134,22 @@
       {% endif %}
     </figure>
     <div class="card-body">
-      <h2 class="card-title text-center mx-auto">{{ i.name }}</h2>
+      <h2 class="card-title text-center mx-auto font-bold text-2xl my-3">{{ i.name }}</h2>
       <div class="card-actions justify-center">
-       <a href="{% url 'category_products' i.slug %}" class="btn btn-primary">View Products</a>
+       <a href="{% url 'category_products' i.slug %}" class="btn btn-neutral text-xl">View Products</a>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
-
+</section>
 <!-- Category End-->
 
 
 
 
 </main>
+
 <footer>
     <footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <nav>
