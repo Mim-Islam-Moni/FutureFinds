@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class=" bg-gray-100">
 <header>
   <!-- Navigation section Start-->
     <nav class="bg-inherit"><div class="navbar bg-base-100 shadow-sm">
@@ -87,12 +87,10 @@
     
 </header>
 
-<main class="w-4/5 mx-auto">
-    <h1 class="mx-auto justify-center text-center font text-2xl font-bold">This is Product page</h1>
+<main class="mb-15">
+<section class="w-4/5  mx-auto">
 
-     <!-- Product code start -->
- <h1 class="mx-auto justify-center text-center font text-2xl font-bold">Products</h1>
-
+     <h1 class="mx-auto justify-center text-center font text-6xl font-bold my-12">Products</h1>
  {% load static %}
 
  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4">
@@ -108,9 +106,9 @@
     <div class="card-body">
       <h2 class="card-title">{{ i.name }}</h2>
       <p>{{ i.price }} BDT</p>
-      <div class="card-actions justify-between">
-        <a href="{% url 'add_to_cart' i.id %}" class="btn btn-primary bg-black border-none">Add to Cart</a>
-        <button class="btn btn-primary">Buy Now</button>
+      <div class="card-actions justify-center">
+        <a href="{% url 'add_to_cart' i.id %}" class="btn btn-neutral text-xl">Add to Cart</a>
+
       </div>
     </div>
   </div>
@@ -118,7 +116,7 @@
 </div>
 
 
-
+</section>
     <!-- Product code End -->
 </main>
 
