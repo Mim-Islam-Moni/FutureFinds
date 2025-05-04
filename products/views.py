@@ -314,7 +314,7 @@ def orders(request):
 @login_required(login_url='login')
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, 'order_detail.html', {'order': order})
+    return render(request, 'order_details.html', {'order': order})
 
 
 @login_required
