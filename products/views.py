@@ -91,12 +91,7 @@ def user_profile(request):
 
     orders = Order.objects.filter(user=user) if user_profile else None
 
-    return render(request, 'user_profile.html', {
-        'user': user,
-        'user_profile': user_profile,
-        'products': products,
-        'orders': orders
-    })
+    return false
 
 
 @login_required
@@ -113,7 +108,7 @@ def edit_profile(request):
         messages.success(request, 'Profile updated successfully!')
         return redirect('user_profile')
 
-    return render(request, 'edit_profile.html', {'profile': profile})
+    return false
 
 
 def products(request):
@@ -138,7 +133,7 @@ def products(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'product_detail.html', {'product': product})
+    return  false
 
 
 @login_required(login_url='login')
@@ -341,9 +336,3 @@ def cancel_order(request, order_id):
     return redirect('orders')
 
 
-def About(request):
-    return render(request, 'About.html')
-
-
-def Contact(request):
-    return render(request, 'Contact.html')

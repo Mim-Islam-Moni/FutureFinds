@@ -37,15 +37,15 @@
 
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a href="#category_part" class="text-white">Category</a></li>
-
-      <li><a href="#footer_part" class="text-white">Contact</a></li>
+      <li><a href="#category_part" class="text-gray-200 text-xl font-bold">Category</a></li>
+       <li><a href="{% url "orders" %}" class="text-gray-200 text-xl font-bold">Orders</a></li>
+      <li><a href="#footer_part" class="text-gray-200 text-xl font-bold">Contact</a></li>
     </ul>
   </div>
 
 
   <div class="navbar-end rounded">
-
+<a href="#" class='px-4 py-2 text-xl rounded font-semibold text-gray-200'>Hi, {{user.username}}</a>
 
 {% if user.is_authenticated %}
   <!-- Show Sign up (logout) if logged in -->
